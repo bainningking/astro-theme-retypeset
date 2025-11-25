@@ -1,27 +1,29 @@
 ---
-title: KaTeX Demostración Matemática
+title: KaTeX 数学演示
 published: 2025-04-01
-lang: es
+tags:
+  - 指南
+lang: zh
 abbrlink: katex-mathematical-demo
 ---
 
-KaTeX es una biblioteca JavaScript multiplataforma que permite visualizar notación matemática en navegadores web. Destaca por su velocidad y facilidad de uso, fue desarrollada inicialmente por Khan Academy y se convirtió en uno de los cinco proyectos más populares de GitHub.
+KaTeX 是一个跨浏览器的 JavaScript 库，可在网页浏览器中渲染数学公式。其设计以快速和易用为核心，最初由可汗学院开发，后成为 GitHub 上最热门的五大项目之一。
 
-## Teoría de Grupos
+## 群论
 
-El lema de Burnside, a veces también llamado teorema de conteo de Burnside, lema de Cauchy-Frobenius o teorema de conteo de órbitas.
+Burnside 引理，有时也称为 Burnside 计数定理、Cauchy-Frobenius 引理或轨道计数定理。
 
-Sea $\wedge$ una acción de grupo de un grupo finito $G$ sobre un conjunto finito $X$. Entonces el número $t$ de órbitas de la acción viene dado por la fórmula.
+设 $\wedge$ 是有限群 $G$ 在有限集合 $X$ 上的群作用。那么作用的轨道数 $t$ 由下面的公式给出。
 
 $$
 t=\frac{1}{|G|}\sum_{g\in G}|\text{Fix}(g)|
 $$
 
-Para cada entero $n\ge2$, el grupo cociente $\mathbb{Z}/n\mathbb{Z}$ es un grupo cíclico generado por $1+n\mathbb{Z}$ y por tanto $\mathbb{Z}/n\mathbb{Z}\cong\mathbb{Z}_n$.
+对于每个整数 $n\ge2$，商群 $\mathbb{Z}/n\mathbb{Z}$ 是由 $1+n\mathbb{Z}$ 生成的循环群，因此 $\mathbb{Z}/n\mathbb{Z}\cong\mathbb{Z}_n$。
 
-El grupo cociente $\mathbb{R}/\mathbb{Z}$ es isomorfo a $([0,1),+_1)$, el grupo de números reales en el intervalo $[0,1)$, bajo la adición módulo 1.
+商群 $\mathbb{R}/\mathbb{Z}$ 同构于 $([0,1),+_1)$，即区间 $[0,1)$ 上以 1 为模的实数加法群。
 
-Teorema de Isomorfismo. Sea $\phi\colon(G,\circ)\to(H,*)$ un homomorfismo. Entonces la función
+同构定理。设 $\phi\colon(G,\circ)\to(H,*)$ 是一个同态。那么函数
 
 $$
 \begin{aligned}
@@ -30,31 +32,31 @@ x\text{Ker}(\phi)&\mapsto\phi(x)
 \end{aligned}
 $$
 
-es un isomorfismo, así que
+是一个同构，因此
 
 $$
 G/\text{Ker}(\phi)\cong \text{Im}(\phi)
 $$
 
-## Teorema de Taylor
+## 泰勒定理
 
-Sea la función $f$ diferenciable $(n+1)$ veces en un intervalo abierto que contiene los puntos $a$ y $x$. Entonces
+设函数 $f$ 在包含点 $a$ 和 $x$ 的开区间上 $(n+1)$ 次可微。那么
 
 $$
  f(x)=f(a)+f'(a)(x-a)+\cdots+\frac{f^{(n)}(a)}{n!}(x-a)^n+R_n(x)
 $$
 
-donde
+其中
 
 $$
  R_n(x)=\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1},
 $$
 
-para algún $c$ entre $a$ y $x$.
+对于 $a$ 和 $x$ 之间的某个 $c$。
 
-$\KaTeX$ no tiene una opción de alineación a la derecha, por lo que se utiliza una columna alineada adicional para los números de ecuación. Estos son empujados a la derecha mediante el espaciado mkern, por defecto \mkern100mu. Se pueden utilizar tanto entornos align como align*, así como \tag y \notag.
+$\KaTeX$ 没有右对齐选项，因此使用额外的对齐列来显示方程编号。它们通过 mkern 间距（默认为 \mkern100mu）被推到右侧。align 和 align* 环境都可以使用，\tag 和 \notag 也可以使用。
 
-## Entorno Align
+## Align 环境
 
 $$
 \begin{align}
@@ -64,7 +66,7 @@ $$
 \end{align}
 $$
 
-## Entorno Align*
+## Align* 环境
 
 $$
 \begin{align}
@@ -73,11 +75,11 @@ $$
 &= \frac{\pi^2}{8(N+1)}\frac{\pi}{2} \tag{**} \\
 &= \frac{\pi^3}{16(N+1)} \\
 \frac{x}{\sin x} &\leq \frac{\pi}{2} \tag{3} \\
-\text{por lo tanto} \qquad\qquad x &\leq \frac{\pi}{2}\sin x \tag{4}
+\text{所以} \qquad\qquad x &\leq \frac{\pi}{2}\sin x \tag{4}
 \end{align}
 $$
 
-## Suma de una Serie
+## 级数求和
 
 $$
 \begin{align*}
@@ -89,15 +91,15 @@ $$
 \end{align*}
 $$
 
-## Notación de Producto
+## 乘积符号
 
 $$
 1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots
 = \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
-\text{ para }\lvert q\rvert < 1.
+\text{ 对于 }\lvert q\rvert < 1.
 $$
 
-## Producto Vectorial
+## 叉积
 
 $$
 \mathbf{V}_1 \times \mathbf{V}_2 = \begin{vmatrix}
@@ -107,7 +109,7 @@ $$
 \end{vmatrix}
 $$
 
-## Ecuaciones de Maxwell
+## 麦克斯韦方程组
 
 $$
 \begin{align*}
@@ -118,7 +120,7 @@ $$
 \end{align*}
 $$
 
-## Letras Griegas
+## 希腊字母
 
 $$
 \begin{align*}
@@ -127,7 +129,7 @@ $$
 \end{align*}
 $$
 
-## Flechas
+## 箭头符号
 
 $$
 \begin{align*}
@@ -139,7 +141,7 @@ $$
 \end{align*}
 $$
 
-## Símbolos
+## 符号
 
 $$
 \begin{align*}
@@ -148,4 +150,4 @@ $$
 \end{align*}
 $$
 
-*Ejemplos tomados de [KaTeX Live Demo](https://sixthform.info/katex/examples/demo.html)*
+*示例取自 [KaTeX Live Demo](https://sixthform.info/katex/examples/demo.html)*

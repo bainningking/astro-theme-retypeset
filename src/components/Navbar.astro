@@ -1,11 +1,13 @@
 ---
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
+import { getPostPath } from '@/i18n/path'
 
 const { currentLang, isHome, isPost, isTag, isAbout, getLocalizedPath } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 
-const isPostActive = isHome || isPost
+const isThoughtsActive = Astro.url.pathname.includes('/posts/thoughts/')
+const isPostActive = isHome || (isPost && !isThoughtsActive)
 const isTagActive = isTag
 const isAboutActive = isAbout
 
@@ -27,9 +29,9 @@ const navItems = [
     className: getNavItemClass(isTagActive),
   },
   {
-    href: '/about/',
-    label: currentUI.about,
-    className: getNavItemClass(isAboutActive),
+    href: getPostPath('thoughts', currentLang),
+    label: currentUI.thoughts,
+    className: getNavItemClass(isThoughtsActive),
   },
 ]
 ---

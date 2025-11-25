@@ -33,22 +33,17 @@ const { lang } = Astro.props
 
 const pinnedPosts = await getPinnedPosts(lang)
 const postsByYear = await getPostsByYear(lang)
+
+// 将所有文章合并到一个数组中
+const allPosts = []
+for (const [_, posts] of postsByYear) {
+  allPosts.push(...posts)
+}
 ---
 
 <Layout>
-  <!-- Pinned Posts -->
-  {pinnedPosts.length > 0 && (
-    <section class="mb-7.5">
-      <div class="uno-decorative-line" />
-      <PostList posts={pinnedPosts} lang={lang} pinned={true} />
-    </section>
-  )}
-
-  <!-- Regular Posts -->
-  {[...postsByYear.entries()].map(([_year, posts]) => (
-    <section class="mb-7.5">
-      <div class="uno-decorative-line" />
-      <PostList posts={posts} lang={lang} />
-    </section>
-  ))}
+  <!-- All Posts Combined -->
+  <section class="mb-7.5">
+    <PostList posts={[...pinnedPosts, ...allPosts]} lang={lang} showTitle={true} />
+  </section>
 </Layout>

@@ -1,16 +1,41 @@
 ---
 import { getTagPath } from '@/i18n/path'
+import { ui } from '@/i18n/ui'
 
 interface Props {
   tags: string[]
   currentTag?: string
   lang: string
+  showAll?: boolean
 }
 
-const { tags, currentTag = '', lang } = Astro.props;
+const { tags, currentTag = '', lang, showAll = false } = Astro.props;
+const currentUI = ui[lang as keyof typeof ui] ?? {}
 ---
 
 <div class="no-heti flex flex-wrap gap-x-3 gap-y-3.2">
+  {showAll && (
+    <a
+      href="/tags/"
+      class:list={[
+        !currentTag
+          ? 'border-secondary/80 c-primary font-medium ring-0.2'
+          : 'ring-0',
+          'relative inline-block border border-secondary/25 rounded-full px-3.2 py-0.7 ring-secondary/80',
+          'transition-[colors,box-shadow] ease-out hover:(border-secondary/80 c-primary font-medium ring-0.2)',
+      ]}
+    >
+      <span class="absolute inset-0 flex items-center justify-center whitespace-nowrap transition-font-weight">
+        {currentUI.all}
+      </span>
+      <span
+        class="inline-block font-medium opacity-0"
+        aria-hidden="true"
+      >
+        {currentUI.all}
+      </span>
+    </a>
+  )}
   {tags.map(tag => (
     <a
       href={getTagPath(tag, lang)}

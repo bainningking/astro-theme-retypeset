@@ -1,9 +1,8 @@
 ---
-title: 容忍与自由
+title: 容忍与自由（胡适）
 published: 1959-03-16
 tags:
-  - 胡适
-  - 近代文学
+  - 示例
 lang: zh
 abbrlink: tolerance-freedom
 ---

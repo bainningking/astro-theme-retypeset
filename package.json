@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.15.0",
   "repository": "https://github.com/radishzzz/astro-theme-retypeset",
   "scripts": {
-    "dev": "astro check && astro dev",
+    "dev": "astro check && astro dev --host 0.0.0.0",
     "build": "astro check && astro build && pnpm apply-lqip",
     "preview": "astro preview",
     "astro": "astro",
@@ -64,7 +64,8 @@
     "tsx": "^4.20.5",
     "typescript": "~5.9.2",
     "unocss": "66.5.1",
-    "unocss-preset-theme": "^0.14.1"
+    "unocss-preset-theme": "^0.14.1",
+    "wrangler": "^4.50.0"
   },
   "pnpm": {
     "patchedDependencies": {

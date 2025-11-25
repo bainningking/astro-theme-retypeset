@@ -1,9 +1,8 @@
 ---
-title: 故乡
+title: 故乡（鲁迅）
 published: 1921-01-10
 tags:
-  - 鲁迅
-  - 近代文学
+  - 示例
 lang: zh
 abbrlink: my-native-heath
 ---

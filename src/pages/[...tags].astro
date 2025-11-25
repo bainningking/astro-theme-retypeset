@@ -1,8 +1,11 @@
 ---
 import TagList from '@/components/TagList.astro'
+import PostDate from '@/components/PostDate.astro'
 import { defaultLocale, moreLocales } from '@/config'
 import Layout from '@/layouts/Layout.astro'
-import { getAllTags } from '@/utils/content'
+import { getAllTags, getPostsGroupByTags } from '@/utils/content'
+import { getPostPath } from '@/i18n/path'
+import { ui } from '@/i18n/ui'
 
 export async function getStaticPaths() {
   type PathItem = {
@@ -31,14 +34,80 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.props
 const allTags = await getAllTags(lang)
+const postsGroupByTag = await getPostsGroupByTags(lang)
+const currentUI = ui[lang as keyof typeof ui] ?? {}
+
+// 获取所有标签，使用与getAllTags相同的排序方式（按文章数量排序）
+const sortedTags = allTags
 ---
 
 <Layout>
-  <!-- Decorative Line -->
-  <div class="uno-decorative-line" />
+  
+  <!-- Tags Title -->
+  <div class="mb-8">
+    <h2 class="text-5xl font-bold mb-6">Tags</h2>
+  </div>
+  
   <!-- Tag List -->
   <TagList
     tags={allTags}
     lang={lang}
+    showAll={true}
   />
+
+  <!-- Posts Grouped by Tags -->
+  <div class="mt-10.5">
+    <div class="tag-post-list">
+      {sortedTags.map(tag => {
+        const posts = postsGroupByTag.get(tag)!
+        
+        return (
+          <div class="tag-group mb-8">
+            <h3 class="text-2xl font-bold mb-4 c-primary">{tag}</h3>
+            <div class="article-list">
+              {posts.map((post) => {
+                const slug = post.data.abbrlink || post.id
+                const updateDate = post.data.updated || post.data.published
+
+                return (
+                  <div class="article-item mb-4 flex items-center">
+                    <div class="article-date text-sm mr-4 min-w-24">
+                      <PostDate
+                        date={new Date(updateDate)}
+                        minutes={0}
+                      />
+                    </div>
+                    <div class="article-title">
+                      <a
+                        class="highlight-hover transition-[colors,font-weight] after:bottom-0.7em hover:(c-primary font-bold)"
+                        href={getPostPath(slug, lang)}
+                        transition:name={`post-${slug}${lang ? `-${lang}` : ''}`}
+                        data-disable-theme-transition
+                      >
+                        《{post.data.title}》
+                      </a>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+      )}
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .article-list {
+    @apply ml-4;
+  }
+  
+  .article-item {
+    @apply border-l border-gray-300 pl-4;
+  }
+  
+  .article-date {
+    @apply text-gray-600;
+  }
+</style>
